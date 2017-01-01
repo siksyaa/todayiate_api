@@ -1,2 +1,3 @@
-# todayiate_api
-API Server
+# 식사일기API
+
+**식사일기 서비스**의 API 및 관리페이지입니다.
