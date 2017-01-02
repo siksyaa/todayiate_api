@@ -1,0 +1,37 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Haruka{% endblock %}
+
+
+{% block navbar %}
+{% include '_partial/navbar.html' %}
+{% endblock %}
+
+
+{% block styles %}
+    {{super()}}
+    <style type="text/css">
+        body {
+            padding-top: 70px;
+            padding-bottom: 40px;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="alert bg-success text-success">
+                        <a href="javascript:void(0)" class="close" data-dismiss="alert">x</a>
+                        {{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block main -%}
+        {%- endblock %}
+    </div>
+{% endblock %}
+

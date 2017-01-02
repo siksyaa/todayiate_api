@@ -1,0 +1,73 @@
+COMMON: &common
+  SECRET_KEY: insecure
+  SQLALCHEMY_DATABASE_URI: postgresql://greeme:secret@woo1.kr:5432/todayiate_dev
+  SQLALCHEMY_TRACK_MODIFICATIONS: False
+
+  LOCAL_TIMEZONE: Asia/Tokyo
+
+  CELERY_BROKER_URL: redis://localhost:6379/0
+  CELERY_RESULT_BACKEND: redis://localhost:6379/0
+  CELERY_TIMEZONE: Asia/Tokyo
+  CELERY_TASK_SERIALIZER: json
+  CELERY_ACCEPT_CONTENT:
+    - json
+
+  HASHTAGRAM_URI: http://api.hashtagram.woo1.kr/api/v1.0
+  MONGO_URI: mongodb://localhost:27017/influence
+
+  ADMIN_CREDENTIALS: 'admin,password'
+  SECURITY_TRACKABLE: True
+  SECURITY_REGISTERABLE: True
+  SECURITY_PASSWORD_SALT: 'SAMPLESALTKEY'
+  DEBUG_TB_INTERCEPT_REDIRECTS: False
+
+  MAIL_SERVER: smtp.gmail.com
+  MAIL_PORT: 465
+  MAIL_USERNAME: hashtagram.co@gmail.com
+  MAIL_PASSWORD: secret
+  MAIL_USE_TLS: False
+  MAIL_USE_SSL: True
+  MAIL_SENDER: 'Hashtagram <hashtagram.co@gmail.com>'
+
+  ALLOWED_EXTENSIONS:
+    - jpg
+    - jpeg
+
+  THINGY_IMAGE_RELATIVE_PATH: 'thingy_image/'
+  UPLOADS_RELATIVE_PATH: 'uploads/'
+  USE_S3: false
+  S3_BUCKET_NAME: ''
+  S3_USE_HTTPS: False
+  AWS_ACCESS_KEY_ID: ''
+  AWS_SECRET_ACCESS_KEY: ''
+  MEDIA_URL: '/static/uploads/'
+  MEDIA_THUMBNAIL_URL: 'cache/thumbnails/'
+  THUMBNAIL_S3_STORAGE_TYPE: 's3'
+  THUMBNAIL_S3_BUCKET_NAME: 'greeme-jp-dev'
+  THUMBNAIL_S3_ACCESS_KEY_ID: ''
+  THUMBNAIL_S3_ACCESS_KEY_SECRET: ''
+  THUMBNAIL_S3_USE_HTTPS: False
+
+  SECURITY_POST_LOGIN: '/profile'
+
+DEVELOPMENT: &development
+  <<: *common
+  DEBUG: True
+
+PRODUCTION: &production
+  <<: *common
+  DEBUG: True
+  SECURITY_PASSWORD_HASH: bcrypt
+  JSONIFY_PRETTYPRINT_REGULAR: True
+
+TESTING: &testing
+  <<: *common
+  SERVER_NAME: 'localhost'
+  SQLALCHEMY_DATABASE_URI: 'sqlite:///:memory:'
+  TESTING: True
+  UPLOAD_FOLDER: /tmp
+  FIXTURES_DIRS:
+  USE_S3: False
+  UPLOADS_RELATIVE_PATH: 'uploads/'
+  FIXTURES_DIRS:
+    - 'tests/fixtures'

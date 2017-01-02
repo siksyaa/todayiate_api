@@ -1,0 +1,25 @@
+info:
+  version: v1
+  title: 'Today I Ate'
+  description: ...
+
+host: localhost:5000
+basePath: /
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+
+securityDefinitions:
+  oauth:
+    type: oauth2
+    flow: implicit
+    authorizationUrl: http://localhost:5000/
+    scopes:
+      email: Read
+  key:
+    type: apiKey
+    in: query
+    name: access_token
