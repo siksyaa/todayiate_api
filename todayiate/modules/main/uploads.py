@@ -1,7 +1,7 @@
 from flask_uploads import UploadSet
 
 upload_sets = []
-IMAGES = tuple('jpg jpe jpeg png'.split())
+IMAGES = tuple('jpg jpeg png'.split())
 
 thingy_image = UploadSet(
     'image',

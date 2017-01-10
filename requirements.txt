@@ -37,6 +37,7 @@ future==0.15.2
 httplib2==0.9.2
 itsdangerous==0.24
 marshmallow==2.10.0
+marshmallow-sqlalchemy==0.12.1
 oauth2==1.9.0.post1
 oauthlib==2.0.0
 passlib==1.6.5

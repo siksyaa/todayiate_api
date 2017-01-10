@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import jsonify, request
-from flask_api_app.core.api import api as api_bp
-from todayiate.extensions import oauth
+from ...core import api as api_bp
+from ...extensions import oauth
 
 
 @api_bp.route('/users/self')

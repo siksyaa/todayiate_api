@@ -6,6 +6,7 @@ import yaml
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_uploads import configure_uploads
 
+from todayiate.modules.user.models import User, Role
 from .app import TodayiateApp, create_app_min
 from .core import main
 from .extensions import config, ma, bootstrap, thumbnail, swagger_ui, cors, reggie
@@ -18,7 +19,7 @@ def create_app(config_name=None):
 
     app = create_app_min()
     app.wsgi_app = MethodRewriteMiddleware(app.wsgi_app)
-    app.init_extensions()
+    app.init_extensions(user_model=User, role_model=Role)
 
     swagger_spec = {}
     with open(
@@ -32,8 +33,8 @@ def create_app(config_name=None):
     swagger_ui.init_app(app,
                         spec=swagger_spec,
                         params={},
-                        oauth_access_token='api.user_access_token',
-                        oauth_authorize='api.user_authorize')
+                        oauth_access_token='api.oauth_access_token',
+                        oauth_authorize='api.oauth_authorize')
 
     debug_toolbar = DebugToolbarExtension()
     debug_toolbar.init_app(app)
@@ -54,6 +55,7 @@ def create_app(config_name=None):
 
     from flask_api_app.core.api import api
     import todayiate.modules.user.api
+    import todayiate.modules.media.api
     # import todayiate.modules.instagram.api
 
     # admin

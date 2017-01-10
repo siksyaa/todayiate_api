@@ -1,7 +1,7 @@
 from flask import current_app
 
-from haruka import create_app_min
-from haruka.database import db
+from .. import create_app_min
+from ..database import db
 
 app = None
 
